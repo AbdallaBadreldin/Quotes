@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import repository.QuotesRepository
 import java.security.InvalidParameterException
 
-class QuotesViewModelFactory(private val quotesRepository: QuotesRepository):ViewModelProvider.Factory {
+class QuotesViewModelFactory(
+    private val quotesRepository: QuotesRepository
+) :ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(QuotesViewModel::class.java)) {

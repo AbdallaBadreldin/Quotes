@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.FavoriteActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:id="@+id/ed_search_quotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/desgin_quotes"
-        android:ems="10"
-        android:inputType="text"
-        android:text="@string/type_something_here_to_search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.074" />
+    <data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_quotes"
-        android:layout_width="409dp"
-        android:layout_height="612dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="117dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/recycler_view_item" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.FavoriteActivity">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ed_search_quotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:alpha="10"
+            android:background="@drawable/desgin_quotes"
+            android:ems="10"
+            android:hint="@string/type_something_here_to_search"
+            android:inputType="text"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_quotes"
+            android:layout_width="409dp"
+            android:layout_height="612dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/recycler_view_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

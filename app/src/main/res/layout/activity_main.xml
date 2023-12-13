@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,8 +12,6 @@
         android:layout_height="match_parent"
         tools:context="ui.MainActivity"
         android:background="@drawable/background_granding">
-
-
         <Button
             android:id="@+id/btn_favorite"
             android:layout_width="wrap_content"
@@ -22,6 +19,7 @@
             android:background="@color/button_color"
             android:shadowRadius="@integer/material_motion_duration_long_2"
             android:text="@string/click_here_to_view_favorite_quotes"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -38,7 +36,14 @@
                 android:layout_height="293dp"
                 android:layout_centerInParent="true"
                 android:background="@color/white"
+                android:fontFamily="@font/poppins_medium_italic"
                 android:gravity="center" />
+        </RelativeLayout>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
             <!-- Button 1 -->
             <Button
@@ -47,27 +52,23 @@
                 android:layout_height="wrap_content"
                 android:text="@string/generate_another_quote_button"
                 android:layout_below="@id/txt_quotes"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="60dp"
                 android:layout_marginTop="16dp"
            />
-
             <!-- Button 2 -->
             <Button
                 android:id="@+id/btn_heart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txt_quotes"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="42dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="center"
-                android:layout_toEndOf="@+id/btn_qutoes"
-                android:backgroundTint="@color/white"
-                android:drawableEnd="@drawable/baseline_favorite_border_24" />
-        </RelativeLayout>
-
-
-
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="60dp"
+                app:backgroundTint="@color/button_color"
+                android:drawableEnd="@drawable/baseline_favorite_border_24"
+                />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
