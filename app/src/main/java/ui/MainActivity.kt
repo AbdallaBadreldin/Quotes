@@ -10,37 +10,30 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.quotes.R
 import com.example.quotes.databinding.ActivityMainBinding
-import com.example.quotes.ui.FavoriteActivity
 import com.example.quotes.ui.ViewModel.QuotesViewModel
 import com.example.quotes.ui.ViewModel.QuotesViewModelFactory
-import com.example.quotes.ui.ViewModel.SharedViewModel
 import repository.QuotesRepository
+import storage.SharedPreferencesManager
 import util.ApiService
 
 
 class MainActivity : AppCompatActivity() , View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mViewModel: QuotesViewModel
-    private lateinit var sharedViewModel: SharedViewModel
     private var isHeartFull = false
-    private lateinit var dataQuotes:ArrayList<String>
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.btnFavorite.setOnClickListener(this)
         binding.btnQutoes.setOnClickListener(this)
         binding.btnHeart.setOnClickListener(this)
+        binding.btnShare.setOnClickListener(this)
 //===========================================================================
-        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
-
         mViewModel = ViewModelProvider(
             this,
             QuotesViewModelFactory(QuotesRepository(ApiService.getService()))
         )[QuotesViewModel::class.java]
         setUpObserver()
-        saveData()
     } //end onCreate
 
     private fun setUpObserver() {
@@ -74,11 +67,11 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
                     GoToNavFavorite()
                 }
 
-                R.id.btn_qutoes -> {
+                R.id.btn_Qutoes -> {
                     observeButtonClick()
                 }
 
-                R.id.btn_heart -> {
+                R.id.btn_Heart -> {
                     // Toggle heart state
                     isHeartFull = !isHeartFull
                     // Change heart color or perform other actions here
@@ -87,21 +80,17 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
                     } else {
                         resources.getDrawable(R.drawable.baseline_favorite_border_24, null)
                     }
-
                     binding.btnHeart.setCompoundDrawablesWithIntrinsicBounds(
                         null,
                         null,
                         heartDrawable,
                         null
                     )
+                    saveData()
+//                    onSendQuotes()
+                }
+                R.id.btn_Share->{
 
-                    onSendQuotes()
-                    // Add the current quote to the shared view model
-                    mViewModel.quotes.value?.let {
-                        val quoteToAdd = it[0]
-                        Log.d("MainActivity", "Adding quote to favorites: $quoteToAdd")
-                        sharedViewModel.addFavoriteQuote(quoteToAdd)
-                    }
                 }
             }
         }
@@ -117,18 +106,19 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         intent.putExtra("quoteContent", contentQuotes)
         startActivity(intent)
     }
-//
     private fun saveData(){
-        // Save the quote text to SharedPreferences
-        val preferences = getSharedPreferences("Quotes", MODE_PRIVATE)
-        val editor = preferences.edit()
-// Use a unique key for each quote
-        val quoteText = binding.txtQuotes.text.toString()
-        val uniqueKey = "quote_" + System.currentTimeMillis()
-        editor.putString(uniqueKey, quoteText)
-        editor.apply()
+        SharedPreferencesManager(application.baseContext).saveQuotes(binding.txtQuotes.text.toString())
     }
 
-
+//    private fun saveData(){
+//        // Save the quote text to SharedPreferences
+//        val preferences = getSharedPreferences(Credential.PREF_KEY, MODE_PRIVATE)
+//        val editor = preferences.edit()
+//// Use a unique key for each quote
+//        val quoteText = binding.txtQuotes.text.toString()
+//        val uniqueKey = "quote_" + System.currentTimeMillis()
+//        editor.putString(uniqueKey, quoteText)
+//        editor.apply()
+//    }
 
 }

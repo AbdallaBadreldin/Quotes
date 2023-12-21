@@ -18,11 +18,6 @@ class QuotesViewModel(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
-
-
-    private val _favoriteQuotes = MutableLiveData<List<Quotes>>()
-    val favoriteQuotes: LiveData<List<Quotes>> get() = _favoriteQuotes
-
     fun loadQuotes() {
         viewModelScope.launch {
             try {
@@ -35,13 +30,4 @@ class QuotesViewModel(
             }
         }
     }
-
-    fun addToFavorites(quote: Quotes) {
-        // Add the quote to the list of favorite quotes
-        val currentList = _favoriteQuotes.value.orEmpty().toMutableList()
-        currentList.add(quote)
-        _favoriteQuotes.value = currentList
-    }
-
-
 }
