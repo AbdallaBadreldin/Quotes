@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    //navigation component
     id("androidx.navigation.safeargs.kotlin")
     //plugins for Serializable annotation using in type converter
     id ("org.jetbrains.kotlin.plugin.serialization") version "1.7.20"
@@ -51,6 +52,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    //recyclerView
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
    //View Model
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
@@ -77,13 +79,11 @@ dependencies {
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
-    //room
+    //room database
     val room_version="2.6.1"
     implementation ("androidx.room:room-runtime:$room_version")
-    kapt ("androidx.room:room-compiler:$room_version")
-    implementation ("androidx.room:room-ktx:$room_version")
-    annotationProcessor ("androidx.room:room-compiler:$room_version")
-    // optional - Kotlin Extensions and Corutines support for Room
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-common:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
     //for Serializable annotation using in type converter

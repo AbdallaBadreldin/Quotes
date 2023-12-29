@@ -1,11 +1,15 @@
 package util
 
+import android.app.Application
+import androidx.room.Room
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import repository.Credential
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import roomdata.QuotesDAO
+import roomdata.QuotesDatabase
 import java.util.concurrent.TimeUnit
+
 
 object ApiService {
     fun getService():ApiQuotes{

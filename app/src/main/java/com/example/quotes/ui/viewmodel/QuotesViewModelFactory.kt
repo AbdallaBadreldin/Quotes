@@ -1,4 +1,4 @@
-package com.example.quotes.ui.ViewModel
+package com.example.quotes.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

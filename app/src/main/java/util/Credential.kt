@@ -1,12 +1,15 @@
-package repository
+package util
 
 import android.content.Context
 import storage.SharedPreferencesManager
 
 object Credential {
+     // URL API QUOTES.
      const val BASE_URL = "https://api.quotable.io/"
-
+//==================================================================================================
+     // KEY PREF.
      const val PREF_KEY = "Quotes"
+
      private var instance: SharedPreferencesManager? = null
      @Synchronized
      fun getInstance(context: Context): SharedPreferencesManager =

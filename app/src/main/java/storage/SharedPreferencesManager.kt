@@ -2,10 +2,9 @@ package storage
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import pojo.Quotes
-import repository.Credential
+import util.Credential
 
 class SharedPreferencesManager(mCtx: Context) {
 
@@ -20,9 +19,24 @@ class SharedPreferencesManager(mCtx: Context) {
         }
         editor.apply()
     }
+    // get all quotes
+    fun getQuotes(): List<Quotes> {
+        val quotesList = mutableListOf<Quotes>()
+        val allQuotes = sharedPreferences.all
+        for (quote in allQuotes) {
+            val gson = Gson()
+            val json = quote.value.toString()
+            val type = object : com.google.gson.reflect.TypeToken<Quotes>() {}.type
+            val quotes: Quotes = gson.fromJson(json, type)
+            quotesList.add(quotes)
+        }
+        return quotesList
+    }
 
-    fun loadQuotes(textQuote: String) {
-        sharedPreferences.getString("contentQuote", textQuote)
-//        sharedPreferences.getString("authorQuote",quotes.author)
+    fun removeQuote(quote: String) {
+        val editor = sharedPreferences.edit()
+        editor.remove(quote)
+        editor.apply()
+
     }
 }
