@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.quotes.R
-import com.example.quotes.databinding.ActivityMainBinding
 import com.example.quotes.databinding.FragmentMainBinding
 import com.example.quotes.ui.adapter.MainViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
-import androidx.navigation.fragment.findNavController
 
 class MainFragment : Fragment() {
     private lateinit var mainBinding: FragmentMainBinding

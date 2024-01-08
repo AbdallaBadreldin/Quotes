@@ -1,11 +1,16 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-android")
     id("kotlin-kapt")
     //navigation component
     id("androidx.navigation.safeargs.kotlin")
     //plugins for Serializable annotation using in type converter
     id ("org.jetbrains.kotlin.plugin.serialization") version "1.7.20"
+    //Dagger&&Hilt
+    kotlin("kapt")
+    id ("com.google.dagger.hilt.android")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -14,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.quotes"
-        minSdk = 26
+        minSdk = 22
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -39,8 +44,8 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures{
-        dataBinding=true
-        viewBinding=true
+        dataBinding = true
+        viewBinding = true
     }
 }
 
@@ -52,6 +57,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
     //recyclerView
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
    //View Model
@@ -80,13 +86,19 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
     //room database
-    val room_version="2.6.1"
-    implementation ("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-common:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-
+    implementation ("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-common:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    //Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:2.6.1")
     //for Serializable annotation using in type converter
-    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
-
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    //Dagger&& Hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    annotationProcessor ("com.google.dagger:hilt-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

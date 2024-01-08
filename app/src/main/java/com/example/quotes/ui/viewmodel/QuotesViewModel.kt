@@ -1,21 +1,22 @@
 package com.example.quotes.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import pojo.Quotes
-import pojo.QuotesResponse
 import repository.QuotesRepository
-import roomdata.QuotesDAO
+import storage.room_database.QuotesDAO
+import util.RequestStatus
+import javax.inject.Inject
 
-class QuotesViewModel(
+
+class QuotesViewModel @Inject constructor(
     private val quotesRepository: QuotesRepository
-):ViewModel() {
+) : ViewModel() {
     private val _isLoad = MutableLiveData<Boolean>().apply { value = false }
-
     private val _quotes = MutableLiveData<List<Quotes>>()
     private val _error = MutableLiveData<String>()
     val isLoad: LiveData<Boolean> get() = _isLoad
@@ -24,13 +25,20 @@ class QuotesViewModel(
 
     fun loadQuotes() {
         viewModelScope.launch {
-            try {
-                val quotesList = quotesRepository.getQuotes()
-                _quotes.value = quotesList
-            } catch (e: Exception) {
-                val errorMessage = "Error loading quotes: ${e.message}"
-                _error.value = errorMessage
-                Log.e("QuotesViewModel", errorMessage, e)
+            quotesRepository.getQuotes().collect { requestStatus ->
+                when (requestStatus) {
+                    is RequestStatus.Waiting -> {
+                        _isLoad.value = true
+                    }
+                    is RequestStatus.Success -> {
+                        _isLoad.value = false
+                        _quotes.value = requestStatus.data.results
+                    }
+                    is RequestStatus.Error -> {
+                        _isLoad.value = false
+                        _error.value = requestStatus.message
+                    }
+                }
             }
         }
     }

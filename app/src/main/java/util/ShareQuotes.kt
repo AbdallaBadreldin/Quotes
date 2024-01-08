@@ -14,6 +14,6 @@ object ShareQuotes {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.type = "text/plain"
         shareIntent.putExtra(Intent.EXTRA_TEXT, quote)
-        context.startActivity(Intent.createChooser(shareIntent, "Share Quote"))
+        context.startActivity(Intent.createChooser(shareIntent, "Share Quote...."))
     }
 }

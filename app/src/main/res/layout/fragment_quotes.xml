@@ -4,9 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="quotes"
-            type="com.example.quotes.ui.quotesFragment.QuotesFragment" />
+
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -92,7 +90,6 @@
                             android:layout_marginTop="300dp"
                             android:drawableEnd="@drawable/baseline_share_24"
                             android:gravity="center"
-
                             app:backgroundTint="@color/white"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

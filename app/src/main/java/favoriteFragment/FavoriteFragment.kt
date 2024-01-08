@@ -2,25 +2,21 @@ package favoriteFragment
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quotes.R
 import com.example.quotes.databinding.FragmentFavoriteBinding
 import com.example.quotes.ui.adapter.QuotesAdapter
 import pojo.Quotes
-import roomdata.QuotesEntity
-import storage.SharedPreferencesManager
 
 
 class FavoriteFragment : Fragment() {
     private lateinit var bindingFv: FragmentFavoriteBinding
     private lateinit var quotesAdapter: QuotesAdapter
-    private lateinit var quotesList: MutableList<QuotesEntity>
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -103,7 +99,6 @@ class FavoriteFragment : Fragment() {
 //        }
 //        return favoriteQuotesList
 //    }
-
 
 
 }
