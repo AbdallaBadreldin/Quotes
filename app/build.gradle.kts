@@ -1,15 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-android")
     id("kotlin-kapt")
-    //navigation component
-    id("androidx.navigation.safeargs.kotlin")
-    //plugins for Serializable annotation using in type converter
-    id ("org.jetbrains.kotlin.plugin.serialization") version "1.7.20"
-    //Dagger&&Hilt
-    kotlin("kapt")
-    id ("com.google.dagger.hilt.android")
     id ("dagger.hilt.android.plugin")
 }
 
@@ -37,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures{
         dataBinding = true
@@ -60,7 +52,7 @@ dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
     //recyclerView
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
-   //View Model
+    //View Model
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     // ViewModel Factory
@@ -82,21 +74,19 @@ dependencies {
     //OkHttp3
     // define a BOM and its version
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
-    // define any required OkHttp artifacts without version
+    // define any required OkHttp artifacts without versiona
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
-    //room database
-    implementation ("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-common:2.6.1")
-    annotationProcessor("androidx.room:room-compiler:2.6.1")
-    //Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:2.6.1")
+
     //for Serializable annotation using in type converter
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-    //Dagger&& Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    annotationProcessor ("com.google.dagger:hilt-compiler:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    // room database
+    implementation("androidx.room:room-runtime:2.5.2")
+    kapt("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
+    //Hilt
+    implementation ("com.google.dagger:hilt-android:2.44")
+    kapt ("com.google.dagger:hilt-android-compiler:2.44")
 }
 // Allow references to generated code
 kapt {

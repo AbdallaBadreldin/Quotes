@@ -14,9 +14,9 @@ interface QuotesDAO {
     // insertQuotes
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertQuotesIntoData(quotesEntity: QuotesEntity)
-    // delete all quotes from database
+    //add delete function
     @Delete
-    suspend fun deleteAllQuotesFromData()
+    suspend fun deleteQuotesFromData(quotesEntity: QuotesEntity)
     // filter  quotes by content and author
     @Query("SELECT * FROM QUOTES_TABLE WHERE content LIKE :searchQuery OR author LIKE :searchQuery")
     suspend fun searchDatabase(searchQuery: String): List<QuotesEntity>

@@ -1,11 +1,7 @@
 package util
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
-import favoriteFragment.FavoriteFragmentDirections
 
 object ShareQuotes {
     // share quotes when click button share

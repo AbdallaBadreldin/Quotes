@@ -1,7 +1,6 @@
 package com.example.quotes.ui.quotesFragment
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,17 +16,15 @@ import com.example.quotes.databinding.FragmentQuotesBinding
 import com.example.quotes.ui.viewmodel.QuotesViewModel
 import com.example.quotes.ui.viewmodel.QuotesViewModelFactory
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.qualifiers.ApplicationContext
 import repository.QuotesRepository
 import storage.SharedPreferencesManager
-import storage.room_database.QuotesDAO
 import storage.room_database.QuotesDatabase
 import util.ApiService
 import util.ShareQuotes
 
 class QuotesFragment : Fragment(), View.OnClickListener {
     private lateinit var bindingQuotes: FragmentQuotesBinding
-    private lateinit var mViewModel: QuotesViewModel
+    private val  mViewModel: QuotesViewModel by viewModels()
     // set initial full heart red color
     private var isHeartFull = false
     // set initial background button
@@ -42,7 +39,7 @@ class QuotesFragment : Fragment(), View.OnClickListener {
             DataBindingUtil.inflate(inflater, R.layout.fragment_quotes, container, false)
 //==================================================================================================
         // Instantiate the QuotesDatabase in your Fragment/Activity
-//        val dao = QuotesDatabase.getInstance(Application()).quotesDao
+//        val dao = QuotesDatabase.getInstance(requireActivity().application).quotesDatabaseDao
 //// Create an instance of the QuotesRepository using ApiService and QuotesDAO
 //        val repository = QuotesRepository(ApiService.getService(), dao)
 //        // Instantiate the ViewModel using the QuotesRepository
@@ -51,7 +48,7 @@ class QuotesFragment : Fragment(), View.OnClickListener {
 //            QuotesViewModelFactory(repository)
 //        )[QuotesViewModel::class.java]
 
-        mViewModel = ViewModelProvider(
+         ViewModelProvider(
             this,
             QuotesViewModelFactory(QuotesRepository(ApiService.getService()))
         )[QuotesViewModel::class.java]

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class QuotesEntity (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id:String,
+    val id:Long,
     val author:String,
     val content:String,
     val tags:List<String>,

@@ -12,9 +12,10 @@ import storage.room_database.QuotesDAO
 import util.RequestStatus
 import javax.inject.Inject
 
-
+@HiltViewModel
 class QuotesViewModel @Inject constructor(
     private val quotesRepository: QuotesRepository
+
 ) : ViewModel() {
     private val _isLoad = MutableLiveData<Boolean>().apply { value = false }
     private val _quotes = MutableLiveData<List<Quotes>>()
