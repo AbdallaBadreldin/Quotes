@@ -20,7 +20,7 @@ import storage.SharedPreferencesManager
 class FavoriteFragment : Fragment() {
     private lateinit var bindingFv: FragmentFavoriteBinding
     private lateinit var quotesAdapter: QuotesAdapter
-    private lateinit var quotesList: MutableList<QuotesEntity>
+//    private lateinit var quotesList: MutableList<QuotesEntity>
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +38,9 @@ class FavoriteFragment : Fragment() {
     }
     //initiate recyclerview
     private fun initRecyclerView() {
-//        val favoriteQuotesList = getFavoriteQuotes()
-        val sharedPreferencesManager = SharedPreferencesManager(requireContext())
-        val favoriteQuotesList = sharedPreferencesManager.getQuotesFromSharedPrefs()
+        val favoriteQuotesList = getFavoriteQuotes()
+//        val sharedPreferencesManager = SharedPreferencesManager(requireContext())
+//        val favoriteQuotesList = sharedPreferencesManager.getQuotesFromSharedPrefs()
         // val quotesList = sharedPreferences.all
         bindingFv.rvFavorite.apply {
             layoutManager = LinearLayoutManager(requireContext())

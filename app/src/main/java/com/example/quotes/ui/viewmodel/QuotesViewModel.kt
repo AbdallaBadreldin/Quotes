@@ -47,31 +47,22 @@ class QuotesViewModel(
         }
     }
     //=============================================================================================
-    fun getQuote() {
-        viewModelScope.launch {
-            repository.insertQuotesToData()
-        }
-    }
+//    fun getQuote() {
+//        viewModelScope.launch {
+//            repository.insertQuotesToData()
+//        }
+//    }
+//
+//    fun getQuoteFromDatabase(): LiveData<List<QuotesEntity>> {
+//        return _isLoad.switchMap {
+//            if (!it) {
+//                repository.getQuoteFromDatabase()
+//            } else {
+//                null
+//            }
+//        }
+//    }
 
-    fun getQuoteFromDatabase(): LiveData<List<QuotesEntity>> {
-        return _isLoad.switchMap {
-            if (!it) {
-                repository.getQuoteFromDatabase()
-            } else {
-                null
-            }
-        }
-    }
-
-    fun updateQuoteType(key: String, quoteT: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                repository.updateQuoteType(key, quoteT)
-            }catch (e: Exception){
-                Log.i("updateQuoteType", "updateQuoteType: $e")
-            }
-        }
-    }
 }
 
 

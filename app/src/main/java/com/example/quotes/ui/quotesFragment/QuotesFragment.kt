@@ -108,7 +108,7 @@ class QuotesFragment : Fragment(), View.OnClickListener {
                         ).show()
                         return
                     }
-                    changeHeartColor()
+                    else changeHeartColor()
                 }
 
                 R.id.btn_share -> {
